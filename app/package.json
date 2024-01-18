@@ -7,8 +7,9 @@
     "build": "next build",
     "lint": "next lint",
     "prebuild": "prisma generate",
+    "migrate": "prisma migrate dev --name catch_up",
     "predev": "prisma generate",
-    "start": "next start"
+    "start": "next dev"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",

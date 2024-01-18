@@ -10,6 +10,10 @@ services:
     depends_on:
       - db
       - prisma
+    environment:
+      - DATABASE_URL=mysql://root:rootpassword@db:3306/dbname
+    volumes:
+      - ./prisma:/app/prisma:rw
 
   db:
     image: mysql
@@ -29,8 +33,17 @@ services:
     depends_on:
       - db
     volumes:
-      - ./prisma:/app/prisma
-      - ./migration.sql:/app/migration.sql
+      - ./prisma:/app/prisma:rw
+      - ./migration.sql:/app/migration.sql:rw
     environment:
-      - DATABASE_URL=mysql://username:password@db:3306/dbname
-    command: sh -c "npx prisma migrate dev --preview-feature && sleep infinity"
+      - DATABASE_URL=mysql://root:rootpassword@db:3306/dbname
+  #   command:
+  #     [
+  #       "sh",
+  #       "./wait-for-db.sh",
+  #       "db",
+  #       "sh",
+  #       "-c",
+  #       "npx prisma migrate deploy --preview-feature && sleep infinity",
+  # ]
+  command: sh -c "npx prisma migrate deploy --preview-feature && sleep infinity"
