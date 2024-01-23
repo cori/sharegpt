@@ -37,13 +37,13 @@ services:
       - ./migration.sql:/app/migration.sql:rw
     environment:
       - DATABASE_URL=mysql://root:rootpassword@db:3306/dbname
-  #   command:
-  #     [
-  #       "sh",
-  #       "./wait-for-db.sh",
-  #       "db",
-  #       "sh",
-  #       "-c",
-  #       "npx prisma migrate deploy --preview-feature && sleep infinity",
-  # ]
-  command: sh -c "npx prisma migrate deploy --preview-feature && sleep infinity"
+    #   command:
+    #     [
+    #       "sh",
+    #       "./wait-for-db.sh",
+    #       "db",
+    #       "sh",
+    #       "-c",
+    #       "npx prisma migrate deploy --preview-feature && sleep infinity",
+    # ]
+    command: sh -c "npx prisma migrate deploy --preview-feature && sleep infinity"
