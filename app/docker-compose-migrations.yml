@@ -11,7 +11,9 @@ services:
       - db
       - prisma
     environment:
-      - DATABASE_URL=mysql://username:password@db:3306/dbname
+      - DATABASE_URL=mysql://root:rootpassword@db:3306/dbname
+    volumes:
+      - ./prisma:/app/prisma:rw
 
   db:
     image: mysql
