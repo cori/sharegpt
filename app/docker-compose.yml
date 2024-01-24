@@ -5,14 +5,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - DATABASE_URL=mysql://username:password@db:3306/dbname
     ports:
-      - 8000:3000
+      - 8800:3000
     depends_on:
       - db
+    env_file:
+      - .env
     environment:
-      - DATABASE_URL=mysql://username:password@db:3306/dbname
+      - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
 
   prisma-migrate:
     image: node:alpine
@@ -22,8 +22,10 @@ services:
       - ./:/app
     working_dir: /app
     command: npx prisma migrate deploy
+    env_file:
+      - .env
     environment:
-      - DATABASE_URL=mysql://root:rootpassword@db:3306/dbname
+      - DATABASE_URL=mysql://root:${MYSQL_ROOT_PASSWORD}@db:3306/${MYSQL_DATABASE}
 
   db:
     image: mysql
@@ -32,11 +34,12 @@ services:
       - 3306:3306
     volumes:
       - db-data:/var/lib/mysql
+
     environment:
-      - MYSQL_DATABASE=dbname
-      - MYSQL_USER=username
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 volumes:
   db-data:

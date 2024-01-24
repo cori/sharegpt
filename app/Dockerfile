@@ -2,10 +2,6 @@
 ARG NODE_VERSION=18-slim
 FROM node:${NODE_VERSION} as build
 
-# Define the environment variable which should be passed from docker-compose
-ARG DATABASE_URL
-ENV DATABASE_URL=${DATABASE_URL}
-
 # Set the working directory in the container
 WORKDIR /app
 
@@ -16,10 +12,6 @@ COPY package.json yarn.lock prisma/schema.prisma ./
 
 # Install the Node.js dependencies
 RUN yarn install --frozen-lockfile --production
-
-# RUN echo $DATABASE_URL
-# # Generate the Prisma client
-# RUN npx prisma generate --schema=schema.prisma
 
 # Copy the entire project directory to the working directory
 COPY . .
