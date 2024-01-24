@@ -5,11 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - DATABASE_URL=mysql://username:password@db:3306/dbname
     ports:
       - 8000:3000
     depends_on:
       - db
-      - prisma
     environment:
       - DATABASE_URL=mysql://username:password@db:3306/dbname
 
@@ -18,21 +19,13 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - 3306:3306
+    volumes:
+      - db-data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=dbname
       - MYSQL_USER=username
       - MYSQL_PASSWORD=password
       - MYSQL_ROOT_PASSWORD=rootpassword
 
-  prisma:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - db
-    volumes:
-      - ./prisma:/app/prisma:ro
-      - ./migration.sql:/app/migration.sql:ro
-    environment:
-      - DATABASE_URL=mysql://root:rootpassword@db:3306/dbname
-    command: sh -c "npx prisma migrate deploy --preview-feature && sleep infinity"
+volumes:
+  db-data:
