@@ -1,6 +1,6 @@
 # Use the official Node.js 18 slim image as the base image
-ARG NODE_VERSION=18-slim
-FROM node:${NODE_VERSION} as build
+ARG NODE_CONTAINER_VERSION=lts-slim
+FROM node:${NODE_CONTAINER_VERSION} as build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -13,13 +13,16 @@ COPY package.json yarn.lock prisma/schema.prisma ./
 # Install the Node.js dependencies
 RUN yarn install --frozen-lockfile --production
 
+# Generate the Prisma client
+RUN npx prisma generate --schema=schema.prisma
+
 # Copy the entire project directory to the working directory
 COPY . .
 
 # Build the application
 RUN yarn build
 
-FROM node:${NODE_VERSION}
+FROM node:${NODE_CONTAINER_VERSION}
 
 WORKDIR /app
 
