@@ -5,7 +5,7 @@
 # Ignore build artifacts
 /node_modules/
 /dist/
-/build/
+# /build/
 /.next/
 .DS_Store
 
@@ -27,16 +27,16 @@ yarn-error.log*
 Dockerfile
 docker-compose*.yml
 
-# Ignore common infrastructure configuration files
-*.yml
-*.yaml
+# # Ignore common infrastructure configuration files
+# *.yml
+# *.yaml
 
 # Ignore common text editor configurations
 .vscode/
 .idea/
 *.sublime-workspace
 
-# Also, considering the migration.sql and similar migration scripts might 
-# be auto-generated or can be produced before deployment, it might be good to ignore them too
-# Ignore migration scripts
-*.sql
+# # Also, considering the migration.sql and similar migration scripts might 
+# # be auto-generated or can be produced before deployment, it might be good to ignore them too
+# # Ignore migration scripts
+# *.sql
