@@ -185,6 +185,11 @@ export default function Home({
 }
 
 export async function getStaticProps() {
+  if (!process.env.DATABASE_URL) {
+    return {
+      notFound: true,
+    };
+  }
   const totalConvos = await prisma.conversation.count();
   const topConvos = await getConvos({ orderBy: "views", take: 10 });
   return {

@@ -145,6 +145,13 @@ export default function ChatPage({
 }
 
 export const getStaticPaths = async () => {
+  if (!process.env.DATABASE_URL) {
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  }
+
   const convos = await prisma.conversation.findMany({
     select: {
       id: true,
@@ -170,11 +177,11 @@ export const getStaticProps = async (
 ) => {
   const { id } = context.params;
 
-  const props = await getConvo(id);
+  const props = process.env.DATABASE_URL ? await getConvo(id) : {};
 
   if (props) {
     return { props, revalidate: 3600 };
   } else {
-    return { notFound: true, revalidate: 1 };
+    return { notFound: true };
   }
 };
