@@ -11,7 +11,7 @@ RUN apt-get update -y && apt-get install -y openssl
 COPY package.json yarn.lock prisma/schema.prisma ./
 
 # Install the Node.js dependencies
-RUN yarn install --frozen-lockfile --production
+RUN yarn install --production
 
 # Generate the Prisma client
 RUN npx prisma generate --schema=schema.prisma
