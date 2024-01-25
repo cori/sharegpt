@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
     "lint": "next lint",
     "prebuild": "prisma generate --schema=schema.prisma",
+    "build": "next build",
     "predev": "prisma generate --schema=schema.prisma",
-    "start": "next start"
+    "dev": "next dev",
+    "start": "next start",
+    "prestart": "prisma generate --schema=schema.prisma"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
