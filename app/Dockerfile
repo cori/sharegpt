@@ -1,5 +1,5 @@
 # Use the official Node.js 18 slim image as the base image
-ARG NODE_CONTAINER_VERSION=lts-slim
+ARG NODE_CONTAINER_VERSION=18-slim
 FROM node:${NODE_CONTAINER_VERSION} as build
 
 # Set the working directory in the container
