@@ -14,7 +14,7 @@ services:
       - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
 
   prisma-migrate:
-    image: node:lts-slim
+    image: sharegpt-docker
     depends_on:
       - db
     volumes:

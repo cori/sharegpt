@@ -1,42 +1,42 @@
-# Ignore version control directories
-.git/
-.gitignore
+# # Ignore version control directories
+# .git/
+# .gitignore
 
-# Ignore build artifacts
-/node_modules/
-/dist/
-# /build/
-/.next/
-.DS_Store
+# # Ignore build artifacts
+# /node_modules/
+# /dist/
+# # /build/
+# /.next/
+# .DS_Store
 
-# Ignore Docker volumes
-/volumes/
+# # Ignore Docker volumes
+# /volumes/
 
-# Ignore environment variables and secrets
-.env
-*.env.local
-*.env.*.local
+# # Ignore environment variables and secrets
+# .env
+# *.env.local
+# *.env.*.local
 
-# Ignore development tools
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# # Ignore development tools
+# *.log
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
 
-# Ignore the Dockerfile itself and docker-compose files
-Dockerfile
-docker-compose*.yml
+# # Ignore the Dockerfile itself and docker-compose files
+# Dockerfile
+# docker-compose*.yml
 
-# # Ignore common infrastructure configuration files
-# *.yml
-# *.yaml
+# # # Ignore common infrastructure configuration files
+# # *.yml
+# # *.yaml
 
-# Ignore common text editor configurations
-.vscode/
-.idea/
-*.sublime-workspace
+# # Ignore common text editor configurations
+# .vscode/
+# .idea/
+# *.sublime-workspace
 
-# # Also, considering the migration.sql and similar migration scripts might 
-# # be auto-generated or can be produced before deployment, it might be good to ignore them too
-# # Ignore migration scripts
-# *.sql
+# # # Also, considering the migration.sql and similar migration scripts might 
+# # # be auto-generated or can be produced before deployment, it might be good to ignore them too
+# # # Ignore migration scripts
+# # *.sql
