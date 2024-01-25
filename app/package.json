@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "prebuild": "prisma generate",
-    "predev": "prisma generate",
+    "prebuild": "prisma generate --schema=schema.prisma",
+    "predev": "prisma generate --schema=schema.prisma",
     "start": "next start"
   },
   "dependencies": {
